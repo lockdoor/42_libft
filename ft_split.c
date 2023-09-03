@@ -28,6 +28,8 @@ static char	**split(const char *s, int *idx)
 	while (idx[i] != -1)
 		i++ ;
 	sp = (char **) malloc (((i / 2) + 1) * sizeof(char *));
+	if (!sp)
+		return (NULL);
 	i = 0;
 	while (idx[i] != -1)
 	{
@@ -35,6 +37,7 @@ static char	**split(const char *s, int *idx)
 		i += 2;
 	}
 	sp[i / 2] = NULL;
+	free (idx);
 	return (sp);
 }
 
@@ -43,8 +46,9 @@ char	**ft_split(const char *s, char c)
 	int		i;
 	int		j;
 	int		*index;
-	char	**sp;
 
+	if (s == NULL)
+		return (NULL);
 	index = (int *) calloc (ft_strlen(s) + 1, sizeof(int));
 	j = 0;
 	i = 0;
@@ -61,9 +65,7 @@ char	**ft_split(const char *s, char c)
 			index[j++] = i;
 		index[j] = -1;
 	}
-	sp = split(s, index);
-	free (index);
-	return (sp);
+	return (split(s, index));
 }
 
 /* this code is finish in one function but use more memory

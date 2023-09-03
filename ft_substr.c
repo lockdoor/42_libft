@@ -27,6 +27,8 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	size_t	j;
 	size_t	s_len;
 
+	if (s == NULL)
+		return (NULL);
 	s_len = ft_strlen(s);
 	tab = (char *) malloc (len + 1);
 	if (!tab)

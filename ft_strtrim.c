@@ -25,6 +25,10 @@ char	*ft_strtrim(const char *s, const char *set)
 	char	*tab;
 
 	tab = NULL;
+	if (s == NULL)
+		return (NULL);
+	if (set == NULL)
+		return (ft_strdup(s));
 	if (!*s)
 		return ((char *) ft_calloc(1, 1));
 	f_index = 0;

@@ -23,6 +23,8 @@ void	*ft_memmove(void *dst, const void *src, size_t n)
 	char	*d;
 	char	*s;
 
+	if (dst == src)
+		return (dst);
 	i = -1;
 	d = (char *) dst;
 	s = (char *) src;

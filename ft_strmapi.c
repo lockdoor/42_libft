@@ -24,6 +24,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char	*tab;
 	int		i;
 
+	if (!s || !f)
+		return (NULL);
 	tab = ft_strdup(s);
 	if (!tab)
 		return (NULL);
