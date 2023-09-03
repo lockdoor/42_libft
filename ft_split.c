@@ -49,7 +49,9 @@ char	**ft_split(const char *s, char c)
 
 	if (s == NULL)
 		return (NULL);
-	index = (int *) calloc (ft_strlen(s) + 1, sizeof(int));
+	index = (int *) ft_calloc (ft_strlen(s) + 1, sizeof(int));
+	if (!index)
+		return (NULL);
 	j = 0;
 	i = 0;
 	index[j] = -1;

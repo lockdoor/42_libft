@@ -40,6 +40,6 @@ char	*ft_strtrim(const char *s, const char *set)
 	if (f_index <= l_index && !ft_strchr(set, s[f_index]))
 		tab = ft_substr(s, f_index, l_index - f_index + 1);
 	else
-		tab = calloc (1, 1);
+		tab = ft_calloc (1, 1);
 	return (tab);
 }
