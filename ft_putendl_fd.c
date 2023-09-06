@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_cd.c                                    :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnamnil <pnamnil@student.42bangkok.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 14:40:50 by pnamnil           #+#    #+#             */
-/*   Updated: 2023/08/13 15:11:41 by pnamnil          ###   ########.fr       */
+/*   Updated: 2023/09/06 08:00:25 by pnamnil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
+	size_t	len;
+
 	if (!s || fd < 0)
 		return ;
-	while (*s)
-		ft_putchar_fd(*s++, fd);
+	len = 0;
+	while (s[len])
+		len++ ;
+	write (fd, s, len);
 	write (fd, "\n", 1);
 }

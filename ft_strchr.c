@@ -6,7 +6,7 @@
 /*   By: pnamnil <pnamnil@student.42bangkok.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 14:40:50 by pnamnil           #+#    #+#             */
-/*   Updated: 2023/08/13 15:11:41 by pnamnil          ###   ########.fr       */
+/*   Updated: 2023/09/06 08:18:54 by pnamnil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,22 @@
 	functions locate the terminating ‘\0’.
 */
 
+#include "libft.h"
+
 char	*ft_strchr(const char *s, int c)
 {
-	char	*t;
+	unsigned char	*t;
+	unsigned char	u;
 
-	t = (char *) s;
+	t = (unsigned char *) s;
+	u = (unsigned char) c;
 	while (*t)
 	{
-		if (*t == (unsigned char) c)
-			return (t);
+		if (*t == u)
+			return ((char *) t);
 		t++ ;
 	}
-	if (c == 0)
-		return (t);
-	return ((void *) 0);
+	if (u == 0)
+		return ((char *) t);
+	return (NULL);
 }

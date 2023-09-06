@@ -6,7 +6,7 @@
 /*   By: pnamnil <pnamnil@student.42bangkok.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 14:40:50 by pnamnil           #+#    #+#             */
-/*   Updated: 2023/08/13 15:11:41 by pnamnil          ###   ########.fr       */
+/*   Updated: 2023/09/06 08:15:05 by pnamnil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,24 @@
 	last occurrence of c.
 */
 
+#include "libft.h"
+
 char	*ft_strrchr(const char *s, int c)
 {
-	char	*t;
+	unsigned char	*t;
+	unsigned char	u;
+	unsigned char	*save;
 
-	t = (char *) s;
+	t = (unsigned char *) s;
+	u = (unsigned char) c;
+	save = NULL;
 	while (*t)
-		t++;
-	while (t >= s)
 	{
-		if (*t == (unsigned char) c)
-			return (t);
-		t-- ;
+		if (*t == u)
+			save = t;
+		t++;
 	}
-	return ((void *) 0);
+	if (u == 0)
+		save = t;
+	return ((char *) save);
 }
