@@ -6,7 +6,7 @@
 /*   By: pnamnil <pnamnil@student.42bangkok.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 14:40:50 by pnamnil           #+#    #+#             */
-/*   Updated: 2023/08/13 15:11:41 by pnamnil          ###   ########.fr       */
+/*   Updated: 2023/09/12 17:11:13 by pnamnil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,19 @@
 
 #include "libft.h"
 
-static char	**split(const char *s, int *idx)
+static char	**ft_is_split_error(char **sp, size_t size, int *idx)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+		free(sp[i++]);
+	free (idx);
+	free (sp);
+	return (NULL);
+}
+
+static char	**ft_split_helper(const char *s, int *idx)
 {
 	char	**sp;
 	int		i;
@@ -28,15 +40,20 @@ static char	**split(const char *s, int *idx)
 	while (idx[i] != -1)
 		i++ ;
 	sp = (char **) malloc (((i / 2) + 1) * sizeof(char *));
-	if (!sp)
-		return (NULL);
-	i = 0;
-	while (idx[i] != -1)
+	if (sp)
 	{
-		sp[i / 2] = ft_substr(s, idx[i], idx[i + 1] - idx[i]);
-		i += 2;
+		i = 0;
+		while (idx[i] != -1)
+		{
+			sp[i / 2] = ft_substr(s, idx[i], idx[i + 1] - idx[i]);
+			if (sp[i / 2] == NULL)
+				return (ft_is_split_error (sp, (i / 2) + 1, idx));
+			i += 2;
+		}
+		sp[i / 2] = NULL;
 	}
-	sp[i / 2] = NULL;
+	else
+		sp = NULL;
 	free (idx);
 	return (sp);
 }
@@ -49,7 +66,7 @@ char	**ft_split(const char *s, char c)
 
 	if (s == NULL)
 		return (NULL);
-	index = (int *) ft_calloc (ft_strlen(s) + 1, sizeof(int));
+	index = (int *) malloc ((ft_strlen(s) + 1) * sizeof(int));
 	if (!index)
 		return (NULL);
 	j = 0;
@@ -67,7 +84,7 @@ char	**ft_split(const char *s, char c)
 			index[j++] = i;
 		index[j] = -1;
 	}
-	return (split(s, index));
+	return (ft_split_helper(s, index));
 }
 
 /* this code is finish in one function but use more memory
