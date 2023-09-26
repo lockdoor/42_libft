@@ -12,8 +12,10 @@
 
 NAME = libft.a
 
+INCLUDE = includes
+
 CC = cc
-CFLEGS = -Wall -Werror -Wextra
+CFLEGS = -Wall -Werror -Wextra -I$(INCLUDE)
 
 # Rule to compile a .c source file into a .o object file
 bin/%.o: %.c
@@ -32,15 +34,19 @@ OBJS = $(patsubst %.c, bin/%.o, $(SRCS))
 B_SRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c
 B_SRCS += ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c
 B_SRCS += ft_lstmap.c
-B_OBJS = $(patsubst %.c, bin/%.o, $(SRCS) $(B_SRCS))
+B_OBJS = $(patsubst %.c, bin/%.o, $(B_SRCS))
+
+FT_PRINTF_PREFIX = ft_printf
+FT_PRINTF_SRCS = $(addprefix $(FT_PRINTF_PREFIX), .c _flags.c _utils.c\
+				_spec_c.c _spec_s.c _spec_d.c _spec_p.c _spec_u.c _spec_x.c)
+FT_PRINTF_OBJS = $(patsubst %.c, bin/%.o, $(FT_PRINTF_SRCS))
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS) 
+$(NAME): $(OBJS) $(B_OBJS) $(FT_PRINTF_OBJS)
+	ar rcs $(NAME) $(OBJS) $(B_OBJS) $(FT_PRINTF_OBJS)
 
-bonus: $(B_OBJS)
-	ar rcs $(NAME) $(B_OBJS)
+bonus: all
 
 clean:
 	rm -rf bin
@@ -49,3 +55,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
