@@ -6,7 +6,7 @@
 /*   By: pnamnil <pnamnil@student.42bangkok.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 14:40:50 by pnamnil           #+#    #+#             */
-/*   Updated: 2023/09/12 17:11:13 by pnamnil          ###   ########.fr       */
+/*   Updated: 2023/10/07 16:44:43 by pnamnil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	**ft_split(const char *s, char c)
 
 	if (s == NULL)
 		return (NULL);
-	index = (int *) malloc ((ft_strlen(s) + 1) * sizeof(int));
+	index = (int *) malloc ((ft_strlen(s) * 2) * sizeof(int));
 	if (!index)
 		return (NULL);
 	j = 0;
