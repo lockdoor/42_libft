@@ -6,7 +6,7 @@
 /*   By: pnamnil <pnamnil@student.42bangkok.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 14:40:50 by pnamnil           #+#    #+#             */
-/*   Updated: 2023/10/07 16:44:43 by pnamnil          ###   ########.fr       */
+/*   Updated: 2023/10/08 09:27:31 by pnamnil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	**ft_split_helper(const char *s, int *idx)
 
 	i = 0;
 	while (idx[i] != -1)
-		i++ ;
+		i++;
 	sp = (char **) malloc (((i / 2) + 1) * sizeof(char *));
 	if (sp)
 	{
@@ -58,6 +58,19 @@ static char	**ft_split_helper(const char *s, int *idx)
 	return (sp);
 }
 
+static void	ft_set_minus_one(int *nb, int nb_len)
+{
+	int	i;
+
+	i = 0;
+	while (i < nb_len)
+	{
+		nb[i] = -1;
+		i++ ;
+	}
+}
+
+/* size of index if strlen == 1 , it require 3 for 2 index and -1 terminate */
 char	**ft_split(const char *s, char c)
 {
 	int		i;
@@ -66,23 +79,23 @@ char	**ft_split(const char *s, char c)
 
 	if (s == NULL)
 		return (NULL);
-	index = (int *) malloc ((ft_strlen(s) * 2) * sizeof(int));
+	i = ft_strlen(s) * 2 + 1;
+	index = (int *) malloc (i * sizeof(int));
 	if (!index)
 		return (NULL);
+	ft_set_minus_one (index, i);
 	j = 0;
 	i = 0;
-	index[j] = -1;
 	while (s[i])
 	{
 		while (s[i] && s[i] == c)
 			i++ ;
-		if (s[i])
+		if (s[i] && j % 2 == 0)
 			index[j++] = i;
 		while (s[i] && s[i] != c)
 			i++ ;
-		if (index[j] > -1)
+		if (j % 2 == 1)
 			index[j++] = i;
-		index[j] = -1;
 	}
 	return (ft_split_helper(s, index));
 }
