@@ -41,10 +41,13 @@ FT_PRINTF_SRCS = $(addprefix $(FT_PRINTF_PREFIX), .c _flags.c _utils.c\
 				_spec_c.c _spec_s.c _spec_d.c _spec_p.c _spec_u.c _spec_x.c)
 FT_PRINTF_OBJS = $(patsubst %.c, bin/%.o, $(FT_PRINTF_SRCS))
 
+GET_NEXT_LINE_SRCS = get_next_line.c get_next_line_utils.c
+GET_NEXT_LINE_OBJS = $(patsubst %.c, bin/%.o, $(GET_NEXT_LINE_SRCS))
+
 all: $(NAME)
 
-$(NAME): $(OBJS) $(B_OBJS) $(FT_PRINTF_OBJS)
-	ar rcs $(NAME) $(OBJS) $(B_OBJS) $(FT_PRINTF_OBJS)
+$(NAME): $(OBJS) $(B_OBJS) $(FT_PRINTF_OBJS) $(GET_NEXT_LINE_OBJS)
+	ar rcs $(NAME) $(OBJS) $(B_OBJS) $(FT_PRINTF_OBJS) $(GET_NEXT_LINE_OBJS)
 
 bonus: all
 
