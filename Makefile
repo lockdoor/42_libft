@@ -14,13 +14,22 @@ NAME = libft.a
 
 INCLUDE = includes
 
+NC="\\033[0m"
+BOLD="\\033[1m"
+ULINE="\\033[4m"
+RED="\\033[31m"
+GREEN="\\033[32m"
+YELLOW="\\033[33m"
+BLUE="\\033[34m"
+MAGENTA="\\033[35m"
+
 CC = cc
 CFLEGS = -Wall -Werror -Wextra -I$(INCLUDE)
 
 # Rule to compile a .c source file into a .o object file
 bin/%.o: %.c
-	mkdir -p bin
-	$(CC) $(CFLEGS) -c $< -o $@
+	@mkdir -p bin
+	@$(CC) $(CFLEGS) -c $< -o $@
 
 SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c
 SRCS += ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c 
@@ -47,16 +56,19 @@ GET_NEXT_LINE_OBJS = $(patsubst %.c, bin/%.o, $(GET_NEXT_LINE_SRCS))
 all: $(NAME)
 
 $(NAME): $(OBJS) $(B_OBJS) $(FT_PRINTF_OBJS) $(GET_NEXT_LINE_OBJS)
-	ar rcs $(NAME) $(OBJS) $(B_OBJS) $(FT_PRINTF_OBJS) $(GET_NEXT_LINE_OBJS)
+	@ar rcs $(NAME) $(OBJS) $(B_OBJS) $(FT_PRINTF_OBJS) $(GET_NEXT_LINE_OBJS)
+	@echo "${GREEN}libft.a is compiled${NC}"
 
 bonus: all
 
 clean:
-	rm -rf bin
+	@rm -rf bin
+	@echo "${GREEN}libft.a is cleaned${NC}"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "${GREEN}libft.a is fcleaned${NC}"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
