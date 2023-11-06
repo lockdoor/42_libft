@@ -96,8 +96,7 @@ char	*get_next_line(int fd)
 {
 	static t_gnlmemo	memo[FD_MAX];
 
-	if (fd < 0 || fd > FD_MAX || BUFFER_SIZE < 1
-		|| memo[fd].malloc_error || memo[fd].read_end)
+	if (fd < 0 || fd > FD_MAX || BUFFER_SIZE < 1 || memo[fd].malloc_error)
 		return (NULL);
 	memo[fd].bf = (char *) malloc (BUFFER_SIZE + 1);
 	if (!memo[fd].bf)
