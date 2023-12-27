@@ -6,12 +6,13 @@
 /*   By: pnamnil <pnamnil@student.42bangkok.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 14:40:50 by pnamnil           #+#    #+#             */
-/*   Updated: 2023/08/13 15:11:41 by pnamnil          ###   ########.fr       */
+/*   Updated: 2023/12/27 11:29:41 by pnamnil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-	The atoi() function converts the initial portion of the string pointed to by str
+	The atoi() function converts the initial 
+	portion of the string pointed to by str
 	to int representation.
 	if overflow unsinged long return 0 or -1
 */

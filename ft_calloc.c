@@ -6,12 +6,13 @@
 /*   By: pnamnil <pnamnil@student.42bangkok.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 14:40:50 by pnamnil           #+#    #+#             */
-/*   Updated: 2023/09/12 16:59:21 by pnamnil          ###   ########.fr       */
+/*   Updated: 2023/12/27 11:30:09 by pnamnil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-	The ft_calloc() function contiguously allocates enough space for count objects
+	The ft_calloc() function contiguously allocates enough 
+	space for count objects
 	that are size bytes of memory each and returns a pointer to the allocated
 	memory.  The allocated memory is filled with bytes of value zero.
 */
